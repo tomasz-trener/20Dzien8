@@ -1,0 +1,59 @@
+﻿1. Dodaj funkcję sortowania: dodanie funkcji sortowania zawodników według różnych kryteriów, 
+takich jak imię, nazwisko, kraj, data urodzenia, wzrost i waga. 
+Można dodać przyciski (np radiobuton) lub menu rozwijane, aby użytkownicy mogli wybrać kryterium sortowania.
+
+2.Wyszukiwanie i filtrowanie: Wprowadź pole wyszukiwania, które pozwala na filtrowanie zawodników na podstawie 
+wprowadzonego tekstu. Wyszukiwanie może obejmować kryteria takie jak imię, nazwisko, kraj pochodzenia czy też 
+połączenie tych kryteriów.
+
+3. Eksport danych do pliku CSV: Dodaj funkcjonalność eksportu danych o zawodnikach do pliku CSV, 
+tak aby użytkownik mógł je łatwo przeglądać w arkuszu kalkulacyjnym lub innym narzędziu.
+
+4. Import danych z pliku CSV:  dodanie funkcji importowania danych o zawodnikach z pliku CSV.
+Aplikacja powinna umożliwiać użytkownikowi wybranie pliku, wczytanie danych z pliku i zaktualizowanie bazy danych zawodników.
+
+5. Dodaj walidację danych: Dodaj walidację danych wejściowych, aby upewnić się, że wprowadzone informacje są poprawne.
+Na przykład, można sprawdzić, czy wprowadzone daty urodzenia są poprawne, czy wartości wzrostu i wagi są liczbami 
+oraz czy imiona i nazwiska zawierają jedynie litery.
+
+6. Statystyki zawodników:  dodanie nowej zakładki lub okna, 
+które wyświetla statystyki dotyczące zawodników, takie jak średni wzrost,
+średnia waga czy też liczba zawodników z poszczególnych krajów.
+
+6. Dodawanie zdjęć zawodników: dodanie funkcji, która pozwala na przypisanie zdjęcia do każdego zawodnika. 
+Zdjęcie może być wyświetlane w oknie szczegółów zawodnika.
+
+7. Utworzenie drzewa zawodników:  utworzenie drzewa trenerów i ich zawodników,
+które pokazuje hierarchię zawodników na podstawie ich trenera.
+Należy użyć kontrolek takich jak TreeView w celu zrealizowania tego zadania.
+
+8. Zaimplementuj funkcję drukowania: Dodaj funkcjonalność drukowania, 
+która pozwala na drukowanie listy zawodników lub szczegółowych informacji o wybranym zawodniku.
+Należy użyć wbudowanych funkcji drukowania
+
+9. Rozszerzenie bazy danych o trenerów: Rozszerz bazę danych, aby przechowywała informacje o trenerach,
+takie jak imię, nazwisko, kraj pochodzenia, data urodzenia, doświadczenie oraz lista zawodników, których trenują.
+
+10. Dodawanie, usuwanie, modyfikacja trenerów: Zaimplementuj funkcje dodawania, 
+usuwania i modyfikowania trenerów, podobnie jak w przypadku zawodników.
+Można utworzyć nowe okno formularza do wprowadzania danych o trenerach.
+
+11* Przypisywanie trenerów do zawodników: Utwórz funkcję, która pozwala na przypisanie trenerów do zawodników.
+Można to zrealizować poprzez dodanie listy rozwijanej z dostępnymi trenerami w oknie szczegółów zawodnika.
+
+12. Filtrowanie zawodników według trenera: Dodaj funkcjonalność filtrowania zawodników na podstawie wybranego trenera. 
+Umożliw to użytkownikowi szybkie wyświetlenie wszystkich zawodników trenowanych przez danego trenera.
+
+13. Trenerzy i ich statystyki:  dodanie nowej zakładki lub okna, które wyświetla statystyki dotyczące trenerów, 
+takie jak liczba trenowanych zawodników, średni wzrost i waga zawodników, 
+liczba zawodników z poszczególnych krajów czy średnia wieku zawodników.
+
+14. Eksport i import danych o trenerach: Rozszerz funkcje eksportu i importu danych, 
+aby obejmowały również dane o trenerach. Umożliw to łatwe przenoszenie danych między różnymi aplikacjami lub systemami.
+
+16. Wyszukiwanie i filtrowanie trenerów: Wprowadź pole wyszukiwania, które pozwala na filtrowanie trenerów na podstawie
+wprowadzonego tekstu. 
+Wyszukiwanie może obejmować kryteria takie jak imię, nazwisko, data urodzenia czy też połączenie tych kryteriów.
+
+17*. Kalendarz treningów: Dodaj funkcję planowania treningów dla trenerów i zawodników. 
+Umożliw uzytkownikom utworzenie kalendarza treningowego z informacjami o dacie, godzinie, rodzaju treningu oraz uczestnikach.

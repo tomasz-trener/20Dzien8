@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,22 +62,23 @@ namespace P02OperacjeCRUD
 
 
             //// podejście 2 
+             //Zawodnik doEdycji = model.Zawodnik.SingleOrDefault(x => x.id_zawodnika == 2);
 
-            //Zawodnik doEdycji = new Zawodnik()
-            //{
-            //    id_zawodnika = 2,
-            //    nazwisko = "MATEJA2",
-            //    wzrost = 200
-            //};
+            Zawodnik doEdycji = new Zawodnik();
+            doEdycji.id_zawodnika = 2;
+            doEdycji.imie = "Marcin3";
+            doEdycji.wzrost = 20;
+             
 
-            // model.Zawodnik.Attach(doEdycji);
-            // model.SubmitChanges();
+            model.Zawodnik.Attach(doEdycji);
+            model.Refresh(RefreshMode.KeepCurrentValues, doEdycji);
+            model.SubmitChanges();
 
             // usuwanie 
 
-            var doUsuniecia = model.Zawodnik.FirstOrDefault(x => x.id_zawodnika == 24);
-            model.Zawodnik.DeleteOnSubmit(doUsuniecia);
-            model.SubmitChanges();
+            //var doUsuniecia = model.Zawodnik.FirstOrDefault(x => x.id_zawodnika == 24);
+            //model.Zawodnik.DeleteOnSubmit(doUsuniecia);
+            //model.SubmitChanges();
 
 
 
