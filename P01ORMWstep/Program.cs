@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace P01ORMWstep
 {
@@ -148,10 +150,72 @@ namespace P01ORMWstep
 
 
 
-            foreach (var z in wyn15)
+            IQueryable<Zawodnik> wyn16 = model.Zawodnik.Where(x => x.kraj == "pol"); // to jeszcze nie zostało wysłane do bazy
+          
+            var wynik17 = wyn16.Where(x => x.wzrost > 170).ToArray();
+
+
+            var wyn18=  model.Zawodnik
+                .GroupBy(x => x.kraj)
+                .Select(x => new
+                {
+                    Kraj = x.Key,
+                    SredniWzrost = x.Average(y => y.wzrost)
+                }).ToArray();
+
+            //   var wyn19 = model.Zawodnik
+            //      .GroupBy(x => x.kraj).ToArray();
+
+            //  string kraj1 = wyn19[0].Key;
+            //  double? wzrosty1= wyn19.Select(x => x.Average(y => y.wzrost)).First();
+
+
+            // wypisz wszystkie wartości długości nazwisk, wraz z informacją ile osób posiada
+            // nazwisko o podanej długości 
+            //np:
+            // nazwisko o długości 5 ma 4 osoby
+            // nazwisko o długości 7 ma 6 osoby
+            // nazwisko o długości 6 ma 6 osoby
+            //.... itd..
+            // wyniki posortuj po liczibie osób w grupie rosnąco
+            // , a jeżeli liczba osób jest taka sama to po długości nazwiska malejąco
+
+            // * uwzgędnij tylko zawodników, których nazwisko nie zaczyna się na "a"
+            // i wypisz tylko te grupy, które zawierają co najmniej 2 osoby 
+
+
+
+            var wyn19 = model.Zawodnik
+                .Where(x => !x.nazwisko.StartsWith("a"))
+                .GroupBy(x => x.nazwisko.Length)
+                .Select(x => new
+                {
+                    DlugoscNazwiska = x.Key,
+                    LiczbaOsob = x.Count()
+                })
+                .Where(x => x.LiczbaOsob > 1)
+                .OrderBy(x => x.LiczbaOsob)
+                .ThenByDescending(x => x.DlugoscNazwiska)
+                .ToArray();
+
+                /*select len(nazwisko) dlugosc, count(*) liczbaOsob
+                from Zawodnicy
+                where LEFT(nazwisko,1) != 'a'
+                group by len(nazwisko)
+                having count(*) > 1
+                order by liczbaOsob, dlugosc desc
+                            */
+
+            foreach (var g in wyn19)
             {
-                Console.WriteLine(z.imie + " " + z.nazwisko + " " + z.bmi);
+                Console.WriteLine($"Nazwisko o długości {g.DlugoscNazwiska} ma {g.LiczbaOsob} osoby");
             }
+
+
+            //foreach (var z in wyn15)
+            //{
+            //    Console.WriteLine(z.imie + " " + z.nazwisko + " " + z.bmi);
+            //}
 
             Console.ReadKey();
 
