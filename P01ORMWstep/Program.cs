@@ -332,6 +332,8 @@ namespace P01ORMWstep
 
 
 
+            var test = new string[] { "a", "b" };
+
         }
     }
 
@@ -341,3 +343,33 @@ namespace P01ORMWstep
         public string Nazwiska { get; set; }
     }
 }
+
+
+
+// pojęcia : 
+
+/*
+
+Klasa abstrakcyjna - to klasa, która stanowi szablon dla innych klas ale nigdy nie twrzoymy nowej instnacji tej klasy 
+
+Hermetyzacja 
+Hermetyzacja polega na ukrywaniu szczegółów implementacji klasy,
+udostępniając jedynie niezbędne interfejsy (metody i właściwości) 
+do interakcji z nią. 
+Dzięki temu klasa może być łatwo modyfikowana, nie wpływając na inne części programu.
+
+Dziedziczenie
+
+Dziedziczenie pozwala na tworzenie nowych klas na podstawie istniejących klas,
+co umożliwia ponowne wykorzystanie kodu i redukcję redundancji.
+Nowa klasa, zwana klasą pochodną, dziedziczy atrybuty i zachowania klasy bazowej.
+
+Enkapsulacja 
+Enkapsulacja to proces łączenia danych i funkcji w jednym obiekcie, 
+zapewniając kontrolę nad dostępem do tych danych.
+Enkapsulacja zabezpiecza dane przed niekontrolowanymi zmianami, umożliwiając jedynie modyfikacje za pomocą zdefiniowanych metod.
+
+
+Polimorfizm
+
+*/ 
