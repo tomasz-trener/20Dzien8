@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P01ORMWstep", "P01ORMWstep\P01ORMWstep.csproj", "{CD89CD09-0ADA-41ED-BF0F-7D89E8F0C7B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD89CD09-0ADA-41ED-BF0F-7D89E8F0C7B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD89CD09-0ADA-41ED-BF0F-7D89E8F0C7B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD89CD09-0ADA-41ED-BF0F-7D89E8F0C7B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD89CD09-0ADA-41ED-BF0F-7D89E8F0C7B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9F6E431-8AD6-4909-90F6-D46FD3CDC492}
+	EndGlobalSection
+EndGlobal
