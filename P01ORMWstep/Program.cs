@@ -36,16 +36,55 @@ namespace P01ORMWstep
 
             string[] wynik = napisy.Where(x=>x.Length>4).ToArray();
 
-            Console.WriteLine(string.Join(" ",wynik));
+            //Console.WriteLine(string.Join(" ",wynik));
 
             int[] liczby = { 4, 6, 33, 2, 30, 20, 22 };
 
-            int[] wynik2 = liczby.Where(x => x > 20).ToArray();
+            int[] wynik2 = liczby
+                .Where(x => x > 20)
+                .OrderByDescending(x => x)
+                .ToArray();
 
 
-            foreach (var z in wyn1)
+            /*
+             * select * from Zawodnicy
+               where kraj = 'pol' or kraj = 'ger'
+               order by kraj desc, wzrost
+            */
+
+            var wyn3= model.Zawodnik
+                .Where(x => x.kraj == "pol" || x.kraj == "ger")
+                .OrderByDescending(x => x.kraj)
+                .ThenBy(x => x.wzrost)
+                .ToArray();
+
+
+            var wyn4 = model.Zawodnik
+              .Where(x => x.kraj.Equals("pol") || x.kraj == "ger")
+              .OrderByDescending(x => x.kraj)
+              .ThenBy(x => x.wzrost)
+              .ToArray();
+
+
+            string a = "ala";
+            bool b = a.Equals("ala");
+
+            var wyn5 = model.Zawodnik.Where(x => x.imie.Substring(0, 1) == "g").ToArray();
+
+            var wyn6 = model.Zawodnik.Where(x => x.data_ur.Value.Year>1980).ToArray();
+
+            var wyn7 = model.Zawodnik
+                .ToArray()
+                .Where(x => x.data_ur != null && x.data_ur.Value.ToString("yyyy")=="1981" ||
+              // x.kraj == "ger" ? x.kraj[0] == 'g' : x.kraj[1]=='o'
+                (x.kraj =="pol" && x.kraj[0] == 'g') ||
+                (x.kraj == "ger" && x.kraj[1] == 'o')
+                ).ToArray();
+
+
+            foreach (var z in wyn7)
             {
-                Console.WriteLine(z.imie + " " + z.nazwisko);
+                Console.WriteLine(z.imie + " " + z.nazwisko + " " + z.wzrost);
             }
 
             Console.ReadKey();
