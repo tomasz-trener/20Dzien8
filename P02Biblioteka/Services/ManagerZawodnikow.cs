@@ -74,7 +74,10 @@ namespace P02Biblioteka.Services
         public string[] PodajKraje()
         {
             ModelBazyDataContext model = new ModelBazyDataContext();
-            return model.Zawodnik.Select(x => x.Kraj).ToArray();
+          //  return model.Zawodnik.Where(x=>x.Kraj != null).Select(x => x.Kraj).Distinct().ToArray();
+            return model.Zawodnik.Where(x => x.Kraj != null).GroupBy(x=>x.Kraj).Select(x=>x.Key).ToArray();
+
+
 
             //// Zawodnik[] zawodnicy = WczytajZawodnikow();
 

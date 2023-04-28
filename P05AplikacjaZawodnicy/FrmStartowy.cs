@@ -17,7 +17,8 @@ namespace P05AplikacjaZawodnicy
             InitializeComponent();
 
             mz.WczytajZawodnikow();
-            cbKraje.DataSource = mz.PodajKraje();
+            var k = mz.PodajKraje();
+            cbKraje.DataSource = k;
         }
 
         private void cbKraje_SelectedIndexChanged(object sender, EventArgs e)
