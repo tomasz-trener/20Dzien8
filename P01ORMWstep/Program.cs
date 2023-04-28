@@ -320,6 +320,7 @@ namespace P01ORMWstep
 
             var polskieWyrazy = new CultureInfo("pl-PL");
 
+          
             foreach (var g in wyn30)
                 Console.WriteLine(
                    polskieWyrazy.DateTimeFormat.GetMonthName(g.NrMiesiaca)
