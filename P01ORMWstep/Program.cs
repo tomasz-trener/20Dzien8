@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -191,7 +192,9 @@ namespace P01ORMWstep
                 .Select(x => new
                 {
                     DlugoscNazwiska = x.Key,
-                    LiczbaOsob = x.Count()
+                    LiczbaOsob = x.Count(),
+                    //Srednia = x.Average(y=>y.wzrost),
+                    //Max = x.Max(y=>y.wzrost)
                 })
                 .Where(x => x.LiczbaOsob > 1)
                 .OrderBy(x => x.LiczbaOsob)
@@ -211,16 +214,129 @@ namespace P01ORMWstep
                 Console.WriteLine($"Nazwisko o długości {g.DlugoscNazwiska} ma {g.LiczbaOsob} osoby");
             }
 
+            Console.WriteLine( "------");
+
+            var wyn20= model.Zawodnik
+                .GroupBy(x => x.kraj)
+                .Select(x => new
+                {
+                    Kraj = x.Key,
+                    Nazwsika = x.Select(y=>y.nazwisko).OrderBy(y=>y)
+                }).ToArray();
+
+            foreach (var g in wyn20)
+            {
+                Console.WriteLine("kraj: " + g.Kraj );
+                Console.WriteLine("\n - "+ string.Join("\n - ", g.Nazwsika));
+
+            }
+
+
+
 
             //foreach (var z in wyn15)
             //{
             //    Console.WriteLine(z.imie + " " + z.nazwisko + " " + z.bmi);
             //}
 
+
+
+
+            //do tej pory wiebieralśmy zawsze zbiór elementów 
+
+            // teraz chcemy umieć znaleźć jeden wybrany rekord 
+
+            Zawodnik wyn21 = model.Zawodnik.Where(x => x.nazwisko == "małysz").ToArray()[0];
+
+            Zawodnik wyn22 = model.Zawodnik.Where(x => x.nazwisko == "małysz").FirstOrDefault();
+
+            Zawodnik wyn23 = model.Zawodnik.FirstOrDefault(x => x.nazwisko == "małysz");
+
+            Zawodnik wyn24 = model.Zawodnik.FirstOrDefault(x => x.id_zawodnika == 7);
+
+            // znajdz zawodnikow których waga jest o dokładnie 1 kilogram mniejsza o wagi najwyższego zawodnika
+
+            var najwyzszy = model.Zawodnik.OrderByDescending(x=>x.wzrost).FirstOrDefault();
+
+            var wyn25 = model.Zawodnik.Where(x => x.waga == najwyzszy.waga - 1).ToArray();
+
+            // inne rozwiazanie
+
+            var wyn26 = model.Zawodnik.Where(x => x.waga == model.Zawodnik.OrderByDescending(y => y.wzrost).FirstOrDefault().waga - 1).ToArray();
+
+            // jeszcze inaczej
+
+            var najwyzszyWzrost = zawodnicy.Select(x => x.wzrost).Max();
+
+            var wyn27 = zawodnicy
+                .Where(x=> x.waga == model.Zawodnik.FirstOrDefault(y=>y.wzrost==najwyzszyWzrost).waga - 1).ToArray();
+
+            // jeszcze inaczej
+
+            var wyn28 = zawodnicy
+              .Where(x => x.waga == model.Zawodnik.FirstOrDefault(y => y.wzrost == zawodnicy.Select(z => z.wzrost).Max()).waga - 1).ToArray();
+
+
+            // dla każdego kraju wypisz imie i nazwisko najwyzszego zawodnika z tego kraju 
+
+            var wyn29 = zawodnicy.GroupBy(x => x.kraj)
+                .Select(x => new
+                {
+                    Kraj = x.Key,
+                    Najwyzszy = x.OrderByDescending(y => y.wzrost).FirstOrDefault()
+                }).ToArray();
+
+            foreach (var g in wyn29)
+            {
+                Console.WriteLine(g.Kraj + " " + g.Najwyzszy.imie + " " + g.Najwyzszy.nazwisko);
+            }
+
+
+            // wypiz grupy nazwisk zawodnikow uruodznych w tym samym miesiacu 
+
+            //przykładowy wynik:
+
+            // 1 : małysz, herr, ...
+            // 2 : bachleda, ....
+
+            Console.WriteLine( "---------------");
+            var wyn30 = zawodnicy
+               .Where(x => x.data_ur != null)
+               .GroupBy(x => x.data_ur.Value.Month)
+               .Select(x => new // Grupa
+               {
+                   NrMiesiaca = x.Key,
+                   Nazwiska = string.Join(", ", x.Select(y => y.nazwisko).ToArray())
+               })
+               .OrderBy(x => x.NrMiesiaca)
+               .ToArray();
+
+            //foreach( var g in wyn30)
+            //    Console.WriteLine(
+            //       CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(g.NrMiesiaca) 
+
+            //        + " " + g.Nazwiska);
+
+
+            var polskieWyrazy = new CultureInfo("pl-PL");
+
+            foreach (var g in wyn30)
+                Console.WriteLine(
+                   polskieWyrazy.DateTimeFormat.GetMonthName(g.NrMiesiaca)
+
+                    + " " + g.Nazwiska);
+
+
             Console.ReadKey();
 
 
 
         }
+    }
+
+    class Grupa
+    {
+        public int NrMiesiaca { get; set; }
+        public string Nazwiska { get; set; }
     }
 }
